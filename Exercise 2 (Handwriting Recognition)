@@ -8,8 +8,7 @@ def train_mnist():
                 print("\nReached 99% accuracy so cancelling training!")
                 self.model.stop_training = True
     callbacks = myCallback()
-    # Please write your code only where you are indicated.
-    # please do not remove # model fitting inline comments.
+
     
     mnist = tf.keras.datasets.mnist
 
