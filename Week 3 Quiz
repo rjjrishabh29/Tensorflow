@@ -1,4 +1,5 @@
 1.What is a Convolution?
+     A technique to isolate features in images
       
   
   
@@ -7,6 +8,7 @@
 
 
 3.How do Convolutions improve image recognition?
+     They isolate features in images
       
 
 
@@ -20,3 +22,4 @@
 
 
 6. Applying Convolutions on top of our Deep neural network will make training:
+       It depends on many factors. It might make your training faster or slower, and a poorly designed Convolutional layer may even be less efficient than a plain DNN!
