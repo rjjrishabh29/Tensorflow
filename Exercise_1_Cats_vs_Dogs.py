@@ -1,17 +1,7 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[12]:
-
-
-# ATTENTION: Please do not alter any of the provided code in the exercise. Only add your own code where indicated
-# ATTENTION: Please do not add or remove any cells in the exercise. The grader will check specific cells based on the cell position.
-# ATTENTION: Please use the provided epoch values when training.
 
 # In this exercise you will train a CNN on the FULL Cats-v-dogs dataset
-# This will require you doing a lot of data preprocessing because
 # the dataset isn't split into training and validation for you
-# This code block has all the required inputs
+
 import os
 import zipfile
 import random
@@ -23,9 +13,6 @@ from shutil import copyfile
 from os import getcwd
 
 
-# In[13]:
-
-
 path_cats_and_dogs = f"{getcwd()}/../tmp2/cats-and-dogs.zip"
 shutil.rmtree('/tmp')
 
@@ -34,19 +21,12 @@ zip_ref = zipfile.ZipFile(local_zip, 'r')
 zip_ref.extractall('/tmp')
 zip_ref.close()
 
-
-# In[14]:
-
-
 print(len(os.listdir('/tmp/PetImages/Cat/')))
 print(len(os.listdir('/tmp/PetImages/Dog/')))
 
 # Expected Output:
 # 1500
 # 1500
-
-
-# In[15]:
 
 
 # Use os.mkdir to create your directories
@@ -74,8 +54,6 @@ try:
 except OSError:
     pass
 
-
-# In[16]:
 
 
 # Write a python function called split_data which takes
@@ -133,9 +111,6 @@ split_data(CAT_SOURCE_DIR, TRAINING_CATS_DIR, TESTING_CATS_DIR, split_size)
 split_data(DOG_SOURCE_DIR, TRAINING_DOGS_DIR, TESTING_DOGS_DIR, split_size)
 
 
-# In[17]:
-
-
 print(len(os.listdir('/tmp/cats-v-dogs/training/cats/')))
 print(len(os.listdir('/tmp/cats-v-dogs/training/dogs/')))
 print(len(os.listdir('/tmp/cats-v-dogs/testing/cats/')))
@@ -146,9 +121,6 @@ print(len(os.listdir('/tmp/cats-v-dogs/testing/dogs/')))
 # 1350
 # 150
 # 150
-
-
-# In[19]:
 
 
 # DEFINE A KERAS MODEL TO CLASSIFY CATS V DOGS
@@ -169,12 +141,8 @@ model = tf.keras.models.Sequential([
 model.compile(optimizer=RMSprop(lr=0.001), loss='binary_crossentropy', metrics=['acc'])
 
 
-# # NOTE:
-# 
+
 # In the cell below you **MUST** use a batch size of 10 (`batch_size=10`) for the `train_generator` and the `validation_generator`. Using a batch size greater than 10 will exceed memory limits on the Coursera platform.
-
-# In[25]:
-
 
 TRAINING_DIR = '/tmp/cats-v-dogs/training'
 train_datagen = ImageDataGenerator(rescale=1 / 255)
@@ -208,16 +176,10 @@ validation_generator = validation_datagen.flow_from_directory(
 # Found 300 images belonging to 2 classes.
 
 
-# In[26]:
-
-
 history = model.fit_generator(train_generator,
                               epochs=10,
                               verbose=1,
                               validation_data=validation_generator)
-
-
-# In[23]:
 
 
 # PLOT LOSS AND ACCURACY
@@ -256,25 +218,4 @@ plt.title('Training and validation loss')
 
 # Desired output. Charts with training and validation metrics. No crash :)
 
-
-# # Submission Instructions
-
-# In[7]:
-
-
-# Now click the 'Submit Assignment' button above.
-
-
-# # When you're done or would like to take a break, please run the two cells below to save your work and close the Notebook. This will free up resources for your fellow learners. 
-
-# In[8]:
-
-
-get_ipython().run_cell_magic('javascript', '', '<!-- Save the notebook -->\nIPython.notebook.save_checkpoint();')
-
-
-# In[ ]:
-
-
-get_ipython().run_cell_magic('javascript', '', 'IPython.notebook.session.delete();\nwindow.onbeforeunload = null\nsetTimeout(function() { window.close(); }, 1000);')
 
