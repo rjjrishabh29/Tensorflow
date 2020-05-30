@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[2]:
-
-
 # ATTENTION: Please do not alter any of the provided code in the exercise. Only add your own code where indicated
 # ATTENTION: Please do not add or remove any cells in the exercise. The grader will check specific cells based on the cell position.
 # ATTENTION: Please use the provided epoch values when training.
@@ -17,9 +11,6 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from shutil import copyfile
 from os import getcwd
 tf.keras.Model()
-
-
-# In[3]:
 
 
 def get_data(filename):
@@ -73,9 +64,6 @@ print(testing_labels.shape)
 # (7172,)
 
 
-# In[4]:
-
-
 # In this section you will have to add another dimension to the data
 # So, for example, if your array is (10000, 28, 28)
 # You will need to make it (10000, 28, 28, 1)
@@ -108,9 +96,6 @@ print(testing_images.shape)
 # (7172, 28, 28, 1)
 
 
-# In[5]:
-
-
 # Define the model
 
 # Use no more than 2 Conv2D and 2 MaxPooling2D
@@ -121,7 +106,7 @@ model = tf.keras.models.Sequential([
     tf.keras.layers.MaxPooling2D(2,2),
     tf.keras.layers.Flatten(),
     tf.keras.layers.Dense(512, activation ='relu'),
-    tf.keras.layers.Dense(10,activation ='softmax')
+    tf.keras.layers.Dense(26,activation ='softmax')
                              ])
 
 # Compile Model. 
@@ -131,9 +116,6 @@ model.compile(optimizer=RMSprop(lr=0.001), loss='sparse_categorical_crossentropy
 history = model.fit(train_datagen.flow(training_images, training_labels), epochs=2, validation_data = validation_datagen.flow(testing_images,testing_labels), verbose=1)
 
 model.evaluate(testing_images, testing_labels, verbose=0)
-
-
-# In[7]:
 
 
 # Plot the chart for accuracy and loss on both training and validation
@@ -159,25 +141,4 @@ plt.legend()
 
 plt.show()
 
-
-# # Submission Instructions
-
-# In[ ]:
-
-
-# Now click the 'Submit Assignment' button above.
-
-
-# # When you're done or would like to take a break, please run the two cells below to save your work and close the Notebook. This will free up resources for your fellow learners. 
-
-# In[ ]:
-
-
-get_ipython().run_cell_magic('javascript', '', '<!-- Save the notebook -->\nIPython.notebook.save_checkpoint();')
-
-
-# In[ ]:
-
-
-get_ipython().run_cell_magic('javascript', '', 'IPython.notebook.session.delete();\nwindow.onbeforeunload = null\nsetTimeout(function() { window.close(); }, 1000);')
 
