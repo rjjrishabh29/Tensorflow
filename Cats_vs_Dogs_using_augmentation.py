@@ -1,5 +1,4 @@
 
-
 # ATTENTION: Please do not alter any of the provided code in the exercise. Only add your own code where indicated
 # ATTENTION: Please do not add or remove any cells in the exercise. The grader will check specific cells based on the cell position.
 # ATTENTION: Please use the provided epoch values when training.
@@ -17,7 +16,6 @@ from tensorflow.keras.optimizers import RMSprop
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from shutil import copyfile
 from os import getcwd
-
 
 
 # This code block unzips the full Cats-v-Dogs dataset to /tmp
